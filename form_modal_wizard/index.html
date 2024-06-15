@@ -20,7 +20,7 @@
         </button>
 
         <!-- Modal -->
-        <div class="modal fade" id="wizardModal" tabindex="-1" aria-labelledby="wizardModalLabel" aria-hidden="true">
+        <div class="modal fade" id="wizardModal" tabindex="-1" aria-labelledby="wizardModalLabel" aria-hidden="true" data-bs-backdrop="static" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content bg-light">
                     <div class="modal-header">
@@ -36,27 +36,67 @@
                             <div id="wizardStep1" class="wizard-step">
                                 <h5>Step 1</h5>
                                 <div class="mb-3">
-                                    <label for="step3Input1" class="form-label">Field 3</label>
+                                    <label for="step3Input1" class="form-label">Text</label>
                                     <input type="text" class="form-control" id="step3Input1" required>
                                 </div>
+
+                                <div class="mb-3">
+                                    <label for="step3Input1" class="form-label">E-mail</label>
+                                    <input type="email" class="form-control" id="step3Input1" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="exampleFormControlTextarea1" class="form-label">Textarea</label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                </div>
                             
-                                <div class="mt-3 d-flex justify-content-end">
+                                <div class="modal-footer sticky-bottom mt-3">
                                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">Close</button>
                                     <button type="button" class="btn btn-primary next-step ms-2">Next</button>
                                 </div>
                             </div>
+
                             <div id="wizardStep2" class="wizard-step d-none">
                                 <h5>Step 2</h5>
-                                <div class="mb-3">
-                                    <label for="step3Input1" class="form-label">Field 3</label>
-                                    <input type="text" class="form-control" id="step3Input1" required>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="step3Input1" class="form-label">Date</label>
+                                            <input type="date" class="form-control" id="step3Input1" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="step3Input1" class="form-label">Date Time</label>
+                                            <input type="datetime-local" class="form-control" id="step3Input1" required>
+                                        </div>
+                                    </div>
+                                </div><!-- row -->
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="step3Input1" class="form-label">File</label>
+                                            <input type="file" class="form-control" id="step3Input1" />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="mb-3">
+                                            <label for="step3Input1" class="form-label">Color</label>
+                                            <input type="color" class="form-control" id="step3Input1" />
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div class="mt-3 d-flex justify-content-end">
+                                <div class="modal-footer sticky-bottom mt-3">
                                     <button type="button" class="btn btn-secondary prev-step">Back</button>
                                     <button type="button" class="btn btn-primary next-step ms-2">Next</button>
                                 </div>
                             </div>
+
                             <div id="wizardStep3" class="wizard-step d-none">
                                 <h5>Step 3</h5>
                                 <div class="mb-3">
@@ -64,11 +104,12 @@
                                     <input type="text" class="form-control" id="step3Input1" required>
                                 </div>
 
-                                <div class="mt-3 d-flex justify-content-end">
+                                <div class="modal-footer sticky-bottom mt-3">
                                     <button type="button" class="btn btn-secondary prev-step">Back</button>
                                     <button type="button" class="btn btn-primary next-step ms-2">Next</button>
                                 </div>
                             </div>
+
                             <div id="wizardStep4" class="wizard-step d-none">
                                 <h5>Step 4</h5>
                                 <div class="mb-3">
@@ -76,11 +117,12 @@
                                     <input type="text" class="form-control" id="step4Input1" required>
                                 </div>
 
-                                <div class="mt-3 d-flex justify-content-end">
+                                <div class="modal-footer sticky-bottom mt-3">
                                     <button type="button" class="btn btn-secondary prev-step">Back</button>
                                     <button type="submit" class="btn btn-success submit-step ms-2">Submit</button>
                                 </div>
                             </div>
+
                         </form>
                     </div>
                 </div>
