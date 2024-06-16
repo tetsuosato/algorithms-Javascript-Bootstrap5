@@ -4,12 +4,9 @@
     <title>Date Range</title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-    <!-- Bootstrap CSS v5.2.1 -->
+    <!-- Bootstrap CSS v5.3.2 -->
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
         rel="stylesheet"
@@ -17,10 +14,7 @@
         crossorigin="anonymous"
     />
 </head>
-
-
 <body>
-
     <div class="container mt-5">
         <div class="row date-pair">
             <div class="col-md-2">
@@ -39,36 +33,70 @@
         </div>
     </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="dateAlertModal" tabindex="-1" aria-labelledby="dateAlertModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="dateAlertModalLabel">Data Inválida</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="dateAlertModalBody">
+                    A data inicial não pode ser maior que a data final.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
             const datePairs = document.querySelectorAll('.date-pair');
             const today = new Date().toISOString().split('T')[0];
-    
+            const dateAlertModal = new bootstrap.Modal(document.getElementById('dateAlertModal'));
+            const dateAlertModalBody = document.getElementById('dateAlertModalBody');
+
             datePairs.forEach(pair => {
                 const initialDateInput = pair.querySelector('.initial-date');
                 const finalDateInput = pair.querySelector('.final-date');
-    
+
                 // Set the default value to today's date
                 initialDateInput.value = today;
                 finalDateInput.value = today;
-    
+
                 // Set initial maximum for initial date and minimum for final date
                 initialDateInput.max = finalDateInput.value;
                 finalDateInput.min = initialDateInput.value;
-    
+
                 initialDateInput.addEventListener('change', function() {
-                    const selectedDate = this.value;
-                    if (selectedDate) {
-                        finalDateInput.min = selectedDate;
+                    const selectedInitialDate = this.value;
+                    const selectedFinalDate = finalDateInput.value;
+
+                    if (selectedInitialDate) {
+                        finalDateInput.min = selectedInitialDate;
+                        if (new Date(selectedInitialDate) > new Date(selectedFinalDate)) {
+                            dateAlertModalBody.textContent = 'An initial data cannot be greater than an end data.';
+                            dateAlertModal.show();
+                            this.value = finalDateInput.value;
+                        }
                     } else {
                         finalDateInput.min = today;
                     }
                 });
-    
+
                 finalDateInput.addEventListener('change', function() {
-                    const selectedDate = this.value;
-                    if (selectedDate) {
-                        initialDateInput.max = selectedDate;
+                    const selectedFinalDate = this.value;
+                    const selectedInitialDate = initialDateInput.value;
+
+                    if (selectedFinalDate) {
+                        initialDateInput.max = selectedFinalDate;
+                        if (new Date(selectedInitialDate) > new Date(selectedFinalDate)) {
+                            dateAlertModalBody.textContent = 'The end date cannot be less than the start date.';
+                            dateAlertModal.show();
+                            this.value = initialDateInput.value;
+                        }
                     } else {
                         initialDateInput.max = today;
                     }
@@ -77,15 +105,12 @@
         });
     </script>
 
-
-
     <!-- Bootstrap JavaScript Libraries -->
     <script
         src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
         crossorigin="anonymous"
     ></script>
-
     <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
